@@ -70,3 +70,14 @@ Spec:
 Events:		<none>
 
 ```
+
+```jq
+ oc get NetGuards   -o json | jq  '.items[]| .spec '
+{
+  "hostname": "oracle.external",
+  "namespace": "egress-v12",
+  "netzone": "v12",
+  "port": 1521
+}
+
+```
