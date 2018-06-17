@@ -5,8 +5,10 @@ can be used with haproxy or with https://github.com/bigg01/tcpproxy.
 
 
 
+
+$ oc create -f netgate.yml
+
 ```
-$ oc create -f netguard.yml
 
 $ oc describe customresourcedefinition netguards.o.guggenbuehl.local
 Name:		netguards.o.guggenbuehl.local
@@ -52,39 +54,43 @@ Status:
     Type:			Established
 Events:				<none>
 
-$ oc replace -f testnetguard1.yml 
-netguard "oracle1" replaced
+$ oc create -f testnetgate1.yml
+ netgate "oracle1" created
 
-$ oc describe netguards
-Name:		oracle1
-Namespace:	myproject
-Labels:		<none>
-Annotations:	<none>
-API Version:	o.guggenbuehl.local/v1
-Kind:		NetGuard
-Metadata:
-  Cluster Name:		
-  Creation Timestamp:	2018-06-17T14:23:44Z
-  Generation:		0
-  Resource Version:	1459
-  Self Link:		/apis/o.guggenbuehl.local/v1/namespaces/myproject/netguards/oracle1
-  UID:			0abde987-723a-11e8-9fbd-4437e637cdb5
-Spec:
-  Hostname:	oracle.external
-  Namespace:	egress-v12
-  Netzone:	v12
-  Port:		1521
-Events:		<none>
+
+$ oc describe netgates
+  Name:		oracle1
+  Namespace:	myproject
+  Labels:		netzone=v12
+  Annotations:	<none>
+  API Version:	o.guggenbuehl.local/v1
+  Kind:		NetGate
+  Metadata:
+    Cluster Name:
+    Creation Timestamp:			2018-06-17T14:48:43Z
+    Deletion Grace Period Seconds:	<nil>
+    Deletion Timestamp:			<nil>
+    Resource Version:			2807
+    Self Link:				/apis/o.guggenbuehl.local/v1/namespaces/myproject/netgates/oracle1
+    UID:					880ebb88-723d-11e8-9fbd-4437e637cdb5
+  Spec:
+    Hostname:	oracle.external
+    Namespace:	egress-v12
+    Netzone:	v12
+    Port:		1521
+  Events:		<none>
+
 
 ```
 
 ```jq
- oc get NetGuards   -o json | jq  '.items[]| .spec '
-{
-  "hostname": "oracle.external",
-  "namespace": "egress-v12",
-  "netzone": "v12",
-  "port": 1521
-}
+ oc get NetGate   -o json | jq  '.items[]| .spec '
+ {
+   "hostname": "oracle.external",
+   "namespace": "egress-v12",
+   "netzone": "v12",
+   "port": 1521
+ }
+
 
 ```

@@ -1,0 +1,11 @@
+apiVersion: "o.guggenbuehl.local/v1"
+kind: NetGate
+metadata:
+  name: oracle1
+  labels:
+    netzone: v12
+spec:
+  hostname: oracle.external
+  port: 1521
+  netzone: v12
+  namespace: egress-v12
