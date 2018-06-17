@@ -1,3 +1,10 @@
+### Idea
+We create custom crd for egress per project definitions. An write a controller for it.
+Or an custom haproxy who reade when it sturt up egress definitions.
+can be used with haproxy or with https://github.com/bigg01/tcpproxy.
+
+
+
 ```
 $ oc create -f netguard.yml
 
