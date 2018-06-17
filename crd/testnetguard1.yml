@@ -1,0 +1,8 @@
+apiVersion: "o.guggenbuehl.local/v1"
+kind: NetGuard
+metadata:
+  name: oracle1
+spec:
+  hostname: oracel.external
+  port: 1521
+  netzone: v12
