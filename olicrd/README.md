@@ -8,9 +8,9 @@ can be used with haproxy or with https://github.com/bigg01/tcpproxy.
 
 $ oc create -f netgate.yml
 
-```
 
 $ oc describe customresourcedefinition netguards.o.guggenbuehl.local
+```sh
 Name:		netguards.o.guggenbuehl.local
 Namespace:	
 Labels:		<none>
@@ -53,11 +53,11 @@ Status:
     Status:			True
     Type:			Established
 Events:				<none>
-
+```
 $ oc create -f testnetgate1.yml
- netgate "oracle1" created
+  netgate "oracle1" created
 
-
+```
 $ oc describe netgates
   Name:		oracle1
   Namespace:	myproject
