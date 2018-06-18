@@ -1,9 +1,0 @@
-apiVersion: "o.guggenbuehl.local/v1"
-kind: NetGuard
-metadata:
-  name: oracle1
-spec:
-  hostname: oracle.external
-  port: 1521
-  netzone: v12
-  namespace: egress-v12
