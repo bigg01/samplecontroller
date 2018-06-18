@@ -11,6 +11,26 @@ INFO[0000] https://192.168.64.2:8443/apis/o.guggenbuehl.local/v1/namespaces/defa
 INFO[0000] Sucessfullty get Reponse
 INFO[0000] --> Status respone: 200
 INFO[0000] found : 1
+
+
+
+
+OPENSHIFT_TOKEN=$(oc whoami -t) go run getnetgate.go | jq
+{
+  "level": "info",
+  "msg": "https://192.168.64.2:8443/apis/o.guggenbuehl.local/v1/namespaces/default/netgates",
+  "time": "2018-06-18T22:19:16+02:00"
+}
+{
+  "level": "info",
+  "msg": "Sucessfullty get Reponse",
+  "time": "2018-06-18T22:19:16+02:00"
+}
+{
+  "level": "info",
+  "msg": "--> Status respone: 200",
+  "time": "2018-06-18T22:19:16+02:00"
+}
 ```
 
 
