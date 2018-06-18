@@ -7,13 +7,10 @@ import (
 	"io/ioutil"
 	"os"
 	"time"
-	//"io"
 
-	//"log"
 	log "github.com/sirupsen/logrus"
-	//"log/syslog"
+
 	"net/http"
-	//"net"
 )
 
 // https://mholt.github.io/json-to-go/
