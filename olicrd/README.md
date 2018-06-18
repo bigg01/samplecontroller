@@ -4,6 +4,15 @@ Or an custom haproxy who reade when it sturt up egress definitions.
 can be used with haproxy or with https://github.com/bigg01/tcpproxy.
 
 
+```sh
+
+OPENSHIFT_TOKEN=$(oc whoami -t) go run getnetgate.go
+INFO[0000] https://192.168.64.2:8443/apis/o.guggenbuehl.local/v1/namespaces/default/netgates
+INFO[0000] Sucessfullty get Reponse
+INFO[0000] --> Status respone: 200
+INFO[0000] found : 1
+```
+
 
 
 $ oc create -f netgate.yml
