@@ -3,7 +3,7 @@ package main
 import (
 	"crypto/tls"
 	"encoding/json"
-	"fmt"
+	"html/template"
 	"io/ioutil"
 	"os"
 	"time"
@@ -16,6 +16,7 @@ import (
 	//"net"
 )
 
+// https://mholt.github.io/json-to-go/
 type netGates struct {
 	APIVersion string `json:"apiVersion"`
 	Items      []struct {
@@ -64,7 +65,7 @@ func main() {
 		client = http.Client{}
 	}
 	req, err := http.NewRequest("GET", apiAddr+"/apis/o.guggenbuehl.local/v1/namespaces/default/netgates", nil)
-	//fmt.Println(req)
+	log.Println(req.URL)
 	if err != nil {
 		log.Fatal("## Error while opening connection to openshift api", err)
 	}
@@ -92,24 +93,18 @@ func main() {
 		log.Println("## Error decoding json.", err)
 
 	}
-	fmt.Println(netgate.APIVersion)
+	log.Println("found :", len(netgate.Items))
 
-	/*
-		tmpl := template.Must(template.ParseFiles("templates/layout.html"))
+	//fmt.Println(netgate.APIVersion)
 
-			http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-				fmt.Println(r)
-				data := TodoPageData{
-					PageTitle: "My TODO list",
-					Todos: []Todo{
-						{Title: "Task 1", Done: false},
-						{Title: "Task 2", Done: true},
-						{Title: "Task 3", Done: true},
-					},
-				}
-				tmpl.Execute(w, data)
-			})
+	tmpl := template.Must(template.ParseFiles("templates/layout.html"))
 
-			http.ListenAndServe(":8080", nil)
-	*/
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		log.Println(r.Method, r.RequestURI, r.UserAgent())
+		data := netgate
+		tmpl.Execute(w, data)
+	})
+
+	http.ListenAndServe(":8080", nil)
+
 }
